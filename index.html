@@ -2,219 +2,783 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&family=Montserrat:wght@400;700&display=swap"
-    rel="stylesheet">
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="responsiveMobile.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&family=Montserrat:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .baloo-text {
+            font-family: "Baloo Bhai 2", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        .popi-text {
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            color: #E0E0E0;
+        }
+
+        .page {
+            height: 100%;
+            width: 100%;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            z-index: 10;
+            background-color: #a4282856;
+        }
+
+        .logo {
+            color: #a42828;
+            font-size: 24px;
+        }
+
+        ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        /* Space for fixed navbar */
+        .slider-container {
+            margin-top: 100px;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 500px;
+        }
+
+        .swiper-wrapper {
+            transition-timing-function: linear !important;
+        }
+
+        .swiper-slide {
+            width: auto !important;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: filter 0.4s ease;
+            pointer-events: none;
+        }
+
+
+        .text-slider {
+            margin-top: 60px;
+            width: 100%;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .text {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: #a42828;
+        }
+
+        .short-line {
+            font-size: 26px;
+            text-align: center;
+            color: #8c8c8c;
+        }
+
+        .page1 {
+            margin-top: 100px;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .left {
+            width: 35vw;
+        }
+
+        .left .lheading {
+            font-weight: 800;
+            font-size: 30px;
+            color: #FACC15;
+        }
+
+        .ltext p {
+            margin-top: 30px;
+            font-size: 20px;
+            color: #CBD5E0;
+        }
+
+        .right {
+            margin-top: 55px;
+            width: 35vw;
+        }
+
+        .right .rheading {
+            font-weight: 800;
+            font-size: 30px;
+            color: #34D399;
+        }
+
+        .rtext p {
+            margin-top: 25px;
+            font-size: 20px;
+            color: #CBD5E0;
+        }
+
+        .stars-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            /* gap between stars */
+            margin-top: 40px;
+            /* optional spacing */
+        }
+
+        .page2 {
+            margin-top: 120px;
+            width: 100%;
+            height: 100vh;
+            gap: 50px;
+        }
+
+        .page2p {
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .star-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        .gap-star {
+            margin-left: 30px;
+            /* extra gap after 3 stars */
+        }
+
+        .exam-section {
+            background: #111;
+            color: #fff;
+            padding: 40px 20px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            color: #FACC15;
+        }
+
+        .section-icon {
+            flex-shrink: 0;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .link-item {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .link-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(250, 204, 21, 0.15);
+        }
+
+        .icon-wrap {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            background: #2c2c2c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-wrap i {
+            color: #FACC15;
+            font-size: 20px;
+        }
+
+        .link-item span {
+            display: block;
+            color: #fff;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .marksheet-section {
+            background: #111;
+            color: #fff;
+            padding: 40px 20px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            color: #FACC15;
+        }
+
+        .section-icon {
+            flex-shrink: 0;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .link-item {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .link-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(250, 204, 21, 0.15);
+        }
+
+        .icon-wrap {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            background: #2c2c2c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-wrap i {
+            color: #FACC15;
+            font-size: 20px;
+        }
+
+        .link-item span {
+            display: block;
+            color: #fff;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        @media (min-width: 320px) and (max-width: 500px) {
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                width: 100%;
+                background-color: black;
+                color: #E0E0E0;
+                font-family: 'Inter', sans-serif;
+            }
+
+            .page {
+                width: 100%;
+            }
+
+            nav {
+                margin-left: 2px;
+                margin-right: 2px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                font-size: 9px;
+                background-color: #93040456;
+            }
+
+            .logo {
+                color: #a42828;
+                font-size: 18px;
+            }
+
+            ul {
+                display: flex;
+                gap: 10px;
+                list-style: none;
+                align-items: center;
+                padding-left: 0;
+                font-size: 10px;
+            }
+
+            .slider-container {
+                margin-top: 100px;
+            }
+
+            .swiper {
+                width: 100%;
+                height: 400px;
+            }
+
+            .swiper-wrapper {
+                transition-timing-function: linear !important;
+            }
+
+            .swiper-slide {
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .swiper-slide img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+                transition: filter 0.4s ease;
+                pointer-events: none;
+            }
+
+            .text-slider {
+                margin-top: 50px;
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .text {
+                font-size: 18px;
+                color: #a42828;
+            }
+
+            .short-line {
+                font-size: 16px;
+                color: #8c8c8c;
+            }
+
+            .page1 {
+                margin-top: 0px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                padding: 0 10px;
+            }
+
+            .left {
+                width: 100%;
+            }
+
+            .left .lheading {
+                font-weight: 800;
+                font-size: 25px;
+                color: #a42828;
+            }
+
+            .ltext p {
+                margin-top: 10px;
+                font-size: 15px;
+                color: #CBD5E0;
+            }
+
+            .right {
+                width: 100%;
+            }
+
+            .right .rheading {
+                font-weight: 800;
+                font-size: 25px;
+                color: #a42828;
+            }
+
+            .rtext p {
+                margin-top: 10px;
+                font-size: 15px;
+                color: #8c8c8c;
+            }
+
+            .stars-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                margin-top: 0px;
+                margin-bottom: 10px;
+            }
+
+            .page2 {
+                margin-top: 0px;
+                padding: 0 10px;
+            }
+
+            .page2p {
+                font-size: 20px;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .star-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .gap-star {
+                margin-left: 16px;
+            }
+
+            .exam-section,
+            .marksheet-section {
+                background: #111;
+                color: #fff;
+                padding: 30px 15px;
+            }
+
+            .section-header {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 16px;
+            }
+
+            .section-header h2 {
+                font-size: 1.2rem;
+                color: #a42828;
+            }
+
+            .section-icon {
+                flex-shrink: 0;
+            }
+
+            .link-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .link-item {
+                background: #1a1a1a;
+                border: 1px solid #333;
+                border-radius: 12px;
+                padding: 16px;
+                text-align: center;
+                text-decoration: none;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .link-item:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 4px 12px rgba(250, 204, 21, 0.15);
+            }
+
+            .icon-wrap {
+                width: 40px;
+                height: 40px;
+                margin: 0 auto 10px;
+                border-radius: 50%;
+                background: #2c2c2c;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .icon-wrap i {
+                color: #a42828;
+                font-size: 18px;
+            }
+
+            .link-item span {
+                display: block;
+                color: #fff;
+                font-weight: 500;
+                font-size: 0.9rem;
+            }
+
+        }
+    </style>
 </head>
 
 <body>
-  <div class="page">
-    <header class="baloo-text">
-      <nav>
-        <div class="logo">MKBU</div>
-        <ul>
-          <li>HOME</li>
-          <li>DEPARTMENT</li>
-          <li>STUDENT</li>
-          <li>EXAMINATION</li>
-          <li>ACADEMIC</li>
-          <li>CONTACT US</li>
-        </ul>
-      </nav>
-    </header>
+    <div class="page">
+        <header class="baloo-text">
+            <nav>
+                <div class="logo">MKBU</div>
+                <ul>
+                    <li>HOME</li>
+                    <li>DEPARTMENT</li>
+                    <li>STUDENT</li>
+                    <li>EXAMINATION</li>
+                    <li>ACADEMIC</li>
+                    <li>CONTACT US</li>
+                </ul>
+            </nav>
+        </header>
 
-    <div class="slider-container">
-      <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="maharaja krishnakumarsinhji bhavsinhji.jpg" alt="slide 1" /></div>
-          <div class="swiper-slide"><img src="7.jpg" alt="slide 2" /></div>
-          <div class="swiper-slide"><img src="mkbu-uni.jpeg" alt="slide 3" /></div>
+        <div class="slider-container">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="maharaja krishnakumarsinhji bhavsinhji.jpg" alt="slide 1" />
+                    </div>
+                    <div class="swiper-slide"><img src="7.jpg" alt="slide 2" /></div>
+                    <div class="swiper-slide"><img src="mkbu-uni.jpeg" alt="slide 3" /></div>
+                </div>
+            </div>
+            <!-- Text Swiper -->
+            <div class="text-slider baloo-text">
+                <div class="text">
+                    <div>Maharaja Krishnakumarsinhji Bhavnagar University
+                        <div class="short-line">Shaping Scholars for a Better Tomorrow.</div>
+                    </div>
+                </div>
+                <div class="text">
+                    <div>મહારાજા કૃષ્ણકુમારસિંહજી ભાવનગર યુનિવર્સિટી
+                        <div class="short-line">સારા આવતીકાલ માટે વિદ્વાનોને ઘડતર.</div>
+                    </div>
+                </div>
+                <div class="text">
+                    <div>महाराजा कृष्णकुमारसिंहजी भावनगर युनिवर्सिटी
+                        <div class="short-line">बेहतर कल के लिए विद्वानों का निर्माण।</div>
+                    </div>
+                </div>
+                <div class="text">
+                    <div>महाराजकृष्णकुमारसिंहजी भावनगरविश्वविद्यालयः
+                        <div class="short-line">श्रेयान् भविष्याय पण्डितानां सृजनम्।</div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <!-- Text Swiper -->
-      <div class="text-slider baloo-text">
-        <div class="text">
-          <div>Maharaja Krishnakumarsinhji Bhavnagar University
-            <div class="short-line">Shaping Scholars for a Better Tomorrow.</div>
-          </div>
-        </div>
-        <div class="text">
-          <div>મહારાજા કૃષ્ણકુમારસિંહજી ભાવનગર યુનિવર્સિટી
-            <div class="short-line">સારા આવતીકાલ માટે વિદ્વાનોને ઘડતર.</div>
-          </div>
-        </div>
-        <div class="text">
-          <div>महाराजा कृष्णकुमारसिंहजी भावनगर युनिवर्सिटी
-            <div class="short-line">बेहतर कल के लिए विद्वानों का निर्माण।</div>
-          </div>
-        </div>
-        <div class="text">
-          <div>महाराजकृष्णकुमारसिंहजी भावनगरविश्वविद्यालयः
-            <div class="short-line">श्रेयान् भविष्याय पण्डितानां सृजनम्।</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="page1 popi-text">
-    <div class="left">
-      <div class="lheading">About University</div>
-      <div class="ltext">
-        <p>Bhavnagar is traditionally known for its cultural heritage in the western India with its last princely ruler
-          Shri Krishnakumarsinhji who was the first to donate his princely state to the Nation. Mahatma Gandhi, the
-          father of the nation received his initial college education in Shamaldas College during 1888, which is today
-          run by Maharaja Krishnakumarsinhji Bhavnagar University. Bhavnagar District is situated between 21.18-22.18
-          Longitude and 71.51-72.18 Latitude. The district encompasses</p>
-      </div>
     </div>
 
+    <div class="page1 popi-text">
+        <div class="left">
+            <div class="lheading">About University</div>
+            <div class="ltext">
+                <p>Bhavnagar is traditionally known for its cultural heritage in the western India with its last
+                    princely ruler
+                    Shri Krishnakumarsinhji who was the first to donate his princely state to the Nation. Mahatma
+                    Gandhi, the
+                    father of the nation received his initial college education in Shamaldas College during 1888, which
+                    is today
+                    run by Maharaja Krishnakumarsinhji Bhavnagar University. Bhavnagar District is situated between
+                    21.18-22.18
+                    Longitude and 71.51-72.18 Latitude. The district encompasses</p>
+            </div>
+        </div>
 
-    <div class="right">
-      <div class="rheading">Vice-Chancellor's Desk</div>
-      <div class="rtext">
-        <p>It is with deep humility and great enthusiasm that I step into the role of Vice Chancellor at this
-          distinguished institution. I am inspired by our legacy and energized by the limitless potential that lies
-          ahead.</p>
 
-        <p>My vision is to position our university as a beacon of innovation, inclusion, and global relevance. In an
-          ever-evolving world, we must lead with courage—reimagining education, embracing interdisciplinary research,
-          and cultivating a culture where creativity and critical thinking thrive.</p>
+        <div class="right">
+            <div class="rheading">Vice-Chancellor's Desk</div>
+            <div class="rtext">
+                <p>It is with deep humility and great enthusiasm that I step into the role of Vice Chancellor at this
+                    distinguished institution. I am inspired by our legacy and energized by the limitless potential that
+                    lies
+                    ahead.</p>
 
-        <p>we will shape a transformative learning environment that not only...</p>
-      </div>
+                <p>My vision is to position our university as a beacon of innovation, inclusion, and global relevance.
+                    In an
+                    ever-evolving world, we must lead with courage—reimagining education, embracing interdisciplinary
+                    research,
+                    and cultivating a culture where creativity and critical thinking thrive.</p>
+
+                <p>we will shape a transformative learning environment that not only...</p>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="page2 popi-text">
-    <div class="page2p">
-      <p>Students Facilitation Center</p>
+    <div class="page2 popi-text">
+        <div class="page2p">
+            <p>Students Facilitation Center</p>
+        </div>
+        <div class="stars-wrapper">
+            <!-- 3 stars -->
+            <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 33 33" fill="#FACC15">
+                <polygon
+                    points="27.865 31.83 17.615 26.209 7.462 32.009 9.553 20.362 0.99 12.335 12.532 10.758 17.394 0 22.436 10.672 34 12.047 25.574 20.22" />
+            </svg>
+            <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 33 33" fill="#FACC15">
+                <polygon
+                    points="27.865 31.83 17.615 26.209 7.462 32.009 9.553 20.362 0.99 12.335 12.532 10.758 17.394 0 22.436 10.672 34 12.047 25.574 20.22" />
+            </svg>
+            <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 33 33" fill="#FACC15">
+                <polygon
+                    points="27.865 31.83 17.615 26.209 7.462 32.009 9.553 20.362 0.99 12.335 12.532 10.758 17.394 0 22.436 10.672 34 12.047 25.574 20.22" />
+            </svg>
+        </div>
+
+        <!-- Section: Exam Services -->
+        <section class="exam-section">
+            <div class="section-header">
+                <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" fill="#FACC15" viewBox="0 0 24 24"
+                    width="24" height="24">
+                    <path
+                        d="M21 2H3a1 1 0 0 0-1 1v13a2 2 0 0 0 2 2h5v4l4-2 4 2v-4h5a2 2 0 0 0 2-2V3a1 1 0 0 0-1-1Zm-2 14H5a1 1 0 0 1-1-1V4h16v11a1 1 0 0 1-1 1Z" />
+                </svg>
+                <h2>Exam & Result Services</h2>
+            </div>
+
+            <div class="link-grid">
+                <a href="https://www.mkbhavuni.edu.in/emliv1/CUMS/ExamForm/" target="_blank" class="link-item">
+                    <div class="icon-wrap"><i class="fas fa-file-signature"></i></div>
+                    <span>Online Exam Form</span>
+                </a>
+
+                <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/timetable.php" target="_blank" class="link-item">
+                    <div class="icon-wrap"><i class="fas fa-calendar-alt"></i></div>
+                    <span>Exam Timetable</span>
+                </a>
+
+                <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/upload/common/Online%20Exam%20-%20Hall%20Ticket%20Correction%20Applcation.pdf"
+                    target="_blank" class="link-item">
+                    <div class="icon-wrap"><i class="fas fa-edit"></i></div>
+                    <span>Hall Ticket Correction</span>
+                </a>
+
+                <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/exam_schedule.php" target="_blank" class="link-item">
+                    <div class="icon-wrap"><i class="fas fa-clock"></i></div>
+                    <span>Exam Schedule</span>
+                </a>
+
+                <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/exam_seat_no.php" target="_blank" class="link-item">
+                    <div class="icon-wrap"><i class="fas fa-chair"></i></div>
+                    <span>Seat Number Allocation</span>
+                </a>
+
+                <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/exam_circular.php" target="_blank" class="link-item">
+                    <div class="icon-wrap"><i class="fas fa-bullhorn"></i></div>
+                    <span>Exam Circulars</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="marksheet-section">
+            <div class="section-header">
+                <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" fill="#FACC15" viewBox="0 0 24 24"
+                    width="24" height="24">
+                    <path
+                        d="M4 2a2 2 0 0 0-2 2v16.5a.5.5 0 0 0 .8.4L7 18l4.2 2.9a.5.5 0 0 0 .8-.4V4a2 2 0 0 0-2-2H4Z" />
+                </svg>
+                <h2>Marksheet Services</h2>
+            </div>
+
+            <div class="link-grid">
+                <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/result.php" target="_blank" class="link-item">
+                    <div class="icon-wrap"><i class="fas fa-poll-h"></i></div>
+                    <span>Result</span>
+                </a>
+
+                <a href="https://www.mkbhavuni.edu.in/bhavuni_result/result.php" target="_blank" class="link-item">
+                    <div class="icon-wrap"><i class="fas fa-chart-bar"></i></div>
+                    <span>CBCS Result</span>
+                </a>
+
+                <a href="https://www.mkbhavuni.edu.in/yearly_provisional_marksheet/marks_entry/result.php"
+                    target="_blank" class="link-item">
+                    <div class="icon-wrap"><i class="fas fa-certificate"></i></div>
+                    <span>Yearly Provisional Marksheet</span>
+                </a>
+
+                <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/exam_marksheet_correction.php" target="_blank"
+                    class="link-item">
+                    <div class="icon-wrap"><i class="fas fa-tools"></i></div>
+                    <span>Marksheet Correction</span>
+                </a>
+
+                <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/exam_duplicate_marksheet.php" target="_blank"
+                    class="link-item">
+                    <div class="icon-wrap"><i class="fas fa-copy"></i></div>
+                    <span>Duplicate Marksheet Request</span>
+                </a>
+            </div>
+        </section>
+
+
+
+
     </div>
-    <div class="stars-wrapper">
-      <!-- 3 stars -->
-      <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 33 33" fill="#FACC15">
-        <polygon
-          points="27.865 31.83 17.615 26.209 7.462 32.009 9.553 20.362 0.99 12.335 12.532 10.758 17.394 0 22.436 10.672 34 12.047 25.574 20.22" />
-      </svg>
-      <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 33 33" fill="#FACC15">
-        <polygon
-          points="27.865 31.83 17.615 26.209 7.462 32.009 9.553 20.362 0.99 12.335 12.532 10.758 17.394 0 22.436 10.672 34 12.047 25.574 20.22" />
-      </svg>
-      <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.5 33 33" fill="#FACC15">
-        <polygon
-          points="27.865 31.83 17.615 26.209 7.462 32.009 9.553 20.362 0.99 12.335 12.532 10.758 17.394 0 22.436 10.672 34 12.047 25.574 20.22" />
-      </svg>
-    </div>
-
-    <!-- Section: Exam Services -->
-    <section class="exam-section">
-      <div class="section-header">
-        <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" fill="#FACC15" viewBox="0 0 24 24" width="24"
-          height="24">
-          <path
-            d="M21 2H3a1 1 0 0 0-1 1v13a2 2 0 0 0 2 2h5v4l4-2 4 2v-4h5a2 2 0 0 0 2-2V3a1 1 0 0 0-1-1Zm-2 14H5a1 1 0 0 1-1-1V4h16v11a1 1 0 0 1-1 1Z" />
-        </svg>
-        <h2>Exam & Result Services</h2>
-      </div>
-
-      <div class="link-grid">
-        <a href="https://www.mkbhavuni.edu.in/emliv1/CUMS/ExamForm/" target="_blank" class="link-item">
-          <div class="icon-wrap"><i class="fas fa-file-signature"></i></div>
-          <span>Online Exam Form</span>
-        </a>
-
-        <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/timetable.php" target="_blank" class="link-item">
-          <div class="icon-wrap"><i class="fas fa-calendar-alt"></i></div>
-          <span>Exam Timetable</span>
-        </a>
-
-        <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/upload/common/Online%20Exam%20-%20Hall%20Ticket%20Correction%20Applcation.pdf"
-          target="_blank" class="link-item">
-          <div class="icon-wrap"><i class="fas fa-edit"></i></div>
-          <span>Hall Ticket Correction</span>
-        </a>
-
-        <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/exam_schedule.php" target="_blank" class="link-item">
-          <div class="icon-wrap"><i class="fas fa-clock"></i></div>
-          <span>Exam Schedule</span>
-        </a>
-
-        <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/exam_seat_no.php" target="_blank" class="link-item">
-          <div class="icon-wrap"><i class="fas fa-chair"></i></div>
-          <span>Seat Number Allocation</span>
-        </a>
-
-        <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/exam_circular.php" target="_blank" class="link-item">
-          <div class="icon-wrap"><i class="fas fa-bullhorn"></i></div>
-          <span>Exam Circulars</span>
-        </a>
-      </div>
-    </section>
-
-    <section class="marksheet-section">
-      <div class="section-header">
-        <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" fill="#FACC15" viewBox="0 0 24 24" width="24"
-          height="24">
-          <path d="M4 2a2 2 0 0 0-2 2v16.5a.5.5 0 0 0 .8.4L7 18l4.2 2.9a.5.5 0 0 0 .8-.4V4a2 2 0 0 0-2-2H4Z" />
-        </svg>
-        <h2>Marksheet Services</h2>
-      </div>
-
-      <div class="link-grid">
-        <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/result.php" target="_blank" class="link-item">
-          <div class="icon-wrap"><i class="fas fa-poll-h"></i></div>
-          <span>Result</span>
-        </a>
-
-        <a href="https://www.mkbhavuni.edu.in/bhavuni_result/result.php" target="_blank" class="link-item">
-          <div class="icon-wrap"><i class="fas fa-chart-bar"></i></div>
-          <span>CBCS Result</span>
-        </a>
-
-        <a href="https://www.mkbhavuni.edu.in/yearly_provisional_marksheet/marks_entry/result.php" target="_blank"
-          class="link-item">
-          <div class="icon-wrap"><i class="fas fa-certificate"></i></div>
-          <span>Yearly Provisional Marksheet</span>
-        </a>
-
-        <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/exam_marksheet_correction.php" target="_blank"
-          class="link-item">
-          <div class="icon-wrap"><i class="fas fa-tools"></i></div>
-          <span>Marksheet Correction</span>
-        </a>
-
-        <a href="https://www.mkbhavuni.edu.in/mkbhavuniweb/exam_duplicate_marksheet.php" target="_blank"
-          class="link-item">
-          <div class="icon-wrap"><i class="fas fa-copy"></i></div>
-          <span>Duplicate Marksheet Request</span>
-        </a>
-      </div>
-    </section>
 
 
-
-
-  </div>
-
-
-  <!-- Swiper JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
-    integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script src="script.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+        integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
 
 </body>
 
